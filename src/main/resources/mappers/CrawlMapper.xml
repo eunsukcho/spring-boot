@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	<mapper namespace="com.example.demo.mapper.CrawlMapper">
+		
+		<select id = "fileInfo" resultType="com.example.demo.domain.FileVO">
+			select * from crawl where crawlTime = #{day} order by RID
+		</select>
+		
+		<select id="fileCount" resultType="int">		
+			select count(*) from crawl where crawlTime = #{day}
+		</select>
+		
+		<select id="filePath" resultType="String">
+			select filePath from crawl where crawlTime = #{day} limit 1
+		</select>
+		
+		<select id="selectTargetCrawlVo" resultType="com.example.demo.domain.ChoiCrawlVo">
+			<![CDATA[
+				select * from crawl where crawlTime = #{day}
+			]]>
+		</select>
+	</mapper>
